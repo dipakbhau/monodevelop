@@ -30,6 +30,7 @@ using MonoDevelop.Core;
 using MonoDevelop.Core.Assemblies;
 using MonoDevelop.DotNetCore.Gui;
 using MonoDevelop.Ide.Templates;
+using MonoDevelop.Projects;
 
 namespace MonoDevelop.DotNetCore.Templating
 {
@@ -42,14 +43,11 @@ namespace MonoDevelop.DotNetCore.Templating
 
 		public DotNetCoreProjectTemplateWizardPage (
 			DotNetCoreProjectTemplateWizard wizard,
-			List<TargetFramework> targetFrameworks,
-			IReadOnlyList<AuthenticationParameter> supportedAuthentications)
+			List<TargetFramework> targetFrameworks)
 		{
 			this.wizard = wizard;
 			this.targetFrameworks = targetFrameworks;
 			parameters = CreateTargetFrameworksParameters ();
-
-			SupportedAuthentications = supportedAuthentications;
 
 			if (targetFrameworks.Any ())
 				SelectedTargetFrameworkIndex = 0;
@@ -116,18 +114,6 @@ namespace MonoDevelop.DotNetCore.Templating
 			var parameter = framework.GetParameterName ();
 			if (!string.IsNullOrEmpty (parameter))
 				wizard.Parameters [parameter] = "true";
-		}
-
-		public IReadOnlyList<AuthenticationParameter> SupportedAuthentications { get; }
-
-		int selectedAuthenticationIndex;
-
-		public int SelectedAuthenticationIndex {
-			get { return selectedAuthenticationIndex; }
-			set {
-				selectedAuthenticationIndex = value;
-				wizard.Parameters [AuthenticationParameter.ParameterName] = SupportedAuthentications [selectedAuthenticationIndex].Name;
-			}
 		}
 	}
 }

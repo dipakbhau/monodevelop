@@ -206,12 +206,6 @@ namespace MonoDevelop.Ide.Templates
 			return itemTemplatingProvider.GetTemplates ();
 		}
 
-		public SolutionTemplate GetSolutionTemplate (string templateId)
-		{
-			var categories = GetProjectTemplateCategories (template => template.Id == templateId);
-			return GetTemplate (categories, templateId);
-		}
-
 		public IEnumerable<ItemTemplate> GetItemTemplates (Predicate<ItemTemplate> match)
 		{
 			return GetItemTemplates ().Where (template => match (template));

@@ -38,8 +38,8 @@ namespace MonoDevelop.DotNetCore.Gui
 
 		void Build ()
 		{
-			MonoDevelop.Components.Gui.Initialize (this);
-			MonoDevelop.Components.BinContainer.Attach (this);
+			Stetic.Gui.Initialize (this);
+			Stetic.BinContainer.Attach (this);
 
 			Name = "MonoDevelop.Ide.Projects.DotNetCoreRuntimeOptionsPanelWidget";
 			mainVBox = new VBox ();
